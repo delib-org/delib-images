@@ -1,0 +1,22 @@
+.btn{
+    padding: 1rem 2rem;
+    background-color: $accent;
+    border-radius: $regRound;
+    border:none;
+    color:white;
+    cursor: pointer;
+    user-select: none;
+
+    &--large{
+        padding: 2rem 4rem;
+        font-size: 2rem;
+    }
+
+    &--weak{
+        background-color: $bkgWeak;
+    }
+
+    &:hover{
+        opacity: 0.8;
+    }
+}

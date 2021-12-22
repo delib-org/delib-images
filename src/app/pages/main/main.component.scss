@@ -1,0 +1,10 @@
+.main {
+  &__mainButtons{
+    display: grid;
+    grid-template-columns: auto auto;
+    gap:2ch;
+    width: 75ch;
+
+    
+  }
+}
