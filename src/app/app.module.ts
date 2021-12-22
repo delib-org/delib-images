@@ -6,13 +6,15 @@ import { AppComponent } from './app.component';
 import { MainComponent } from './pages/main/main.component';
 import { CreateCompetitionComponent } from './pages/create-competition/create-competition.component';
 import { CreateCompareComponent } from './pages/create-compare/create-compare.component';
+import { AddImageComponent } from './pages/create-compare/add-image/add-image.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainComponent,
     CreateCompetitionComponent,
-    CreateCompareComponent
+    CreateCompareComponent,
+    AddImageComponent
   ],
   imports: [
     BrowserModule,

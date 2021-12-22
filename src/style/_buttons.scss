@@ -7,6 +7,15 @@
     cursor: pointer;
     user-select: none;
 
+    &-image{
+        padding: 4rem 6rem;
+        background-color: #d9d9d9;
+        font-size: 2rem;
+        color: $h2Color;
+    }
+
+
+
     &--large{
         padding: 2rem 4rem;
         font-size: 2rem;
@@ -17,6 +26,28 @@
     }
 
     &:hover{
+        opacity: 0.8;
+    }
+
+
+}
+
+.fav{
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100px;
+    background-color: $accent;
+    color: white;
+    font-size: 30px;
+    border:none;
+    box-shadow: 6px 6px 18px rgba(0, 0, 0, 0.383);
+    transition: all 150ms;
+
+    &:active{
+        box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.383);
         opacity: 0.8;
     }
 }

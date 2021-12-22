@@ -22,6 +22,7 @@ $regRound:10px;
 
 //scss files
 @import "style/buttons";
+@import 'style/wrapper';
 
 //main
 body {
@@ -32,6 +33,7 @@ body {
 h1 {
   font-size: 2rem;
   color: $h1Color;
+  text-align: center;
 }
 
 p {
