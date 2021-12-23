@@ -1,5 +1,10 @@
 <div class="compare">
     <div class="wrapper">
+        <div *ngFor="let image of images |async" class="main__images">
+            <div class="main__imagesBox">
+                <img src={{image.src}} alt="image">
+            </div>
+        </div>
         <h1>Ask mates to tell you which of thouse images is better</h1>
         <app-add-image></app-add-image>
         <app-add-image></app-add-image>
@@ -7,5 +12,6 @@
             <button class='fav'>+</button>
             <p>Add more images to compare</p>
         </div>
+        
     </div>
 </div>
