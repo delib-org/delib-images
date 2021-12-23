@@ -2,5 +2,10 @@
 <div class="main__mainButtons">
     <button class="btn btn--large btn--weak" [routerLink]="'create-compare'">Create new Comparision</button>
     <button class="btn btn--large btn--weak" [routerLink]="'create-competition'">Create new Competition</button>
-</div>
 
+</div>
+<div *ngFor="let image of images |async" class="main__images">
+    <div class="main__imagesBox">
+        <img src={{image.src}} alt="image">
+    </div>
+</div>

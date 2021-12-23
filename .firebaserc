@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "select-mass-pictures": {
+      "hosting": {
+        "delib-images": [
+          "select-mass-pictures"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "select-mass-pictures"
+  }
+}

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { Observable } from 'rxjs';
 
 
 @Component({
@@ -8,7 +10,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainComponent implements OnInit {
 
-  constructor() { }
+  images: Observable<any[]>;
+  constructor(firestore: AngularFirestore) {
+    this.images = firestore.collection('images').valueChanges();
+  }
 
   ngOnInit(): void {
   }

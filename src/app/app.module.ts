@@ -7,6 +7,14 @@ import { MainComponent } from './pages/main/main.component';
 import { CreateCompetitionComponent } from './pages/create-competition/create-competition.component';
 import { CreateCompareComponent } from './pages/create-compare/create-compare.component';
 import { AddImageComponent } from './pages/create-compare/add-image/add-image.component';
+import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+import { environment } from '../environments/environment';
+
+import { provideAuth,getAuth } from '@angular/fire/auth';
+import { provideFirestore,getFirestore } from '@angular/fire/firestore';
+import { providePerformance,getPerformance } from '@angular/fire/performance';
+import { provideStorage,getStorage } from '@angular/fire/storage';
+import{AngularFireModule} from '@angular/fire/compat';
 
 @NgModule({
   declarations: [
@@ -14,11 +22,17 @@ import { AddImageComponent } from './pages/create-compare/add-image/add-image.co
     MainComponent,
     CreateCompetitionComponent,
     CreateCompareComponent,
-    AddImageComponent
+    AddImageComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideAuth(() => getAuth()),
+    provideFirestore(() => getFirestore()),
+    providePerformance(() => getPerformance()),
+    provideStorage(() => getStorage())
   ],
   providers: [],
   bootstrap: [AppComponent]
