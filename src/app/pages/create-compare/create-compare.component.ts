@@ -10,7 +10,7 @@ import { EMPTY, Observable } from 'rxjs';
 })
 export class CreateCompareComponent implements OnInit {
 
-  images:Observable<any> |Array<any>|void|any;
+  images:any;
 
   constructor(private db:ImagesService) {
     this.images = []

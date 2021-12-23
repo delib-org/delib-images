@@ -7,7 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddImageComponent implements OnInit {
 
-  constructor() { }
+  key: string = '';
+  name: string = '';
+  url: string = '';
+  
+
+  constructor(private file:File) {
+    this.file = file;
+  }
 
   ngOnInit(): void {
   }
