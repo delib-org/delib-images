@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { UserImagesService } from 'src/app/services/user-images.service';
 
 
 @Component({
@@ -8,9 +10,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainComponent implements OnInit {
 
-  constructor() { }
+  
+
+  constructor(private _userImagesService:UserImagesService) { }
 
   ngOnInit(): void {
+    this._userImagesService.getImages().subscribe((data:any)=>{
+      console.log(data)
+    })
   }
 
   

@@ -1,0 +1,9 @@
+{
+    "images": [
+      { "id": "sdsddsgg", "src": "https://i.ebayimg.com/images/g/b6cAAOSw2mJgE-Zj/s-l400.jpg" }
+    ],
+    "comments": [
+      { "id": 1, "body": "some comment", "postId": 1 }
+    ],
+    "profile": { "name": "typicode" }
+  }
