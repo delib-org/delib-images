@@ -12,12 +12,12 @@ export class CreateCompareComponent implements OnInit {
 
   images:any;
 
-  constructor(private db:ImagesService) {
-    this.images = []
-   }
+  constructor(private imagesDB:ImagesService) {}
 
   ngOnInit(): void {
-    this.images = this.db.listenToImages()
+    this.imagesDB.getImages().subscribe((data:any)=>{
+      console.log(data)
+    })
   }
 
 }

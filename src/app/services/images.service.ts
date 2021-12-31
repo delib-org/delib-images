@@ -1,15 +1,19 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { EMPTY, Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
+import { catchError, retry } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ImagesService {
 
-  constructor(private firestore: AngularFirestore) {}
+  // options:{observe: 'body', responseType: 'json'}
 
-  listenToImages() {
-    return this.firestore.collection('images').valueChanges();
+  constructor(private http: HttpClient) {}
+
+  getImages() {
+    const allImagesUrl = 'http://localhost:3000/images';
+    return this.http.get(allImagesUrl)
   }
 }
