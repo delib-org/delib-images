@@ -1,12 +1,39 @@
 $border-radius:10px;
 $accent:blue;
+$padding:20px;
+$gray:rgb(230, 230, 230);
+$hazard:orange;
+
+.wrapper{
+  background-color: wheat;
+  max-width: 75ch;
+  margin: auto;
+}
+p{
+  color: rgba(0, 0, 0, 0.603);
+}
 
 .btn {
+
+  border-radius: $border-radius;
+  width: fit-content;
+  height: fit-content;
+  box-sizing: border-box;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  text-decoration: none;
+  background-color: $accent;
+  color: white;
+  cursor: pointer;
+  user-select: none;
+
   &--link {
     border-radius: $border-radius;
     width: fit-content;
     height: fit-content;
     box-sizing: border-box;
+    
 
     a {
       padding: 20px;
@@ -20,5 +47,30 @@ $accent:blue;
     }
   }
 
+  &--image{
+    border-radius: $border-radius;
+    background-color: $accent;
+    width:4rem;
+    background-color: $gray;
+    padding: 40px;
+    display: flex;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+
+    img{
+      width: 40px;
+    }
+    p{
+      margin: 2px;
+    }
+
+  }
+&--hazard{
+  background-color: $hazard;
+}
 
 }
