@@ -3,7 +3,9 @@ import { doc, setDoc } from "firebase/firestore";
 import { storage, db } from './config';
 
 
-export async function uploadImage({ images, settings }) {
+
+export async function uploadImage({ images, settings, setIsRedirect }) {
+    
     try {
         console.log(images)
         if (!images || !Array.isArray(images)) throw new Error("'images' are not an array");
@@ -12,7 +14,9 @@ export async function uploadImage({ images, settings }) {
         const { userId, comparisonId } = settings;
 
         if (!('userId' in settings) || !('comparisonId' in settings)) throw new Error(`user or comparison id is missing: user ${userId}, ${comparisonId}`)
-        if (typeof userId !== 'string' || typeof comparisonId !== 'string') throw new Error('user or comparison are not strings')
+        if (typeof userId !== 'string' || typeof comparisonId !== 'string') throw new Error('user or comparison are not strings');
+
+        const readyArray=[];
 
         images.forEach(image => {
             const imageName = image.name;
@@ -24,12 +28,15 @@ export async function uploadImage({ images, settings }) {
             const imageRef = doc(db, 'comparison', userId, comparisonId, `${imageName}`);
 
             uploadBytes(storageRef, imageName).then(snapshot => {
-                console.log('Uploaded a blob or file!');
-                console.log(snapshot)
+                
                 getDownloadURL(storageRef).then(httpRef=>{
                     console.log(httpRef)
                     setDoc(imageRef, { imageSrc: httpRef, }).then(() => {
-                        console.log(`image was set to: /comparison/${userId}/${comparisonId}/${imageName}`)
+                        console.log(`image was set to: /comparison/${userId}/${comparisonId}/${imageName}`);
+                        readyArray.push('ready');
+                        if(readyArray.length === images.length && setIsRedirect){
+                            setIsRedirect(true);
+                        }
                     })
     
                 })
