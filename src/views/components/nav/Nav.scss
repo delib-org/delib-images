@@ -1,0 +1,9 @@
+nav{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    a{
+        text-align: center;
+        padding: 20px;
+        background-color: rgb(241, 241, 241);
+    }
+}

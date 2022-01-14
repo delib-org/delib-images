@@ -1,0 +1,24 @@
+$border-radius:10px;
+$accent:blue;
+
+.btn {
+  &--link {
+    border-radius: $border-radius;
+    width: fit-content;
+    height: fit-content;
+    box-sizing: border-box;
+
+    a {
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      text-decoration: none;
+      background-color: $accent;
+      color: white;
+      border-radius: $border-radius;
+
+    }
+  }
+
+
+}
