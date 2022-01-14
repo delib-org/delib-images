@@ -41,7 +41,7 @@ function CreateCompare() {
             alert('You must set two images')
         } else{
             const id = "id" + Math.random().toString(16).slice(2)
-            uploadImage({ images:imagesArray, settings: { user: '1234', comparison:id } })
+            uploadImage({ images:imagesArray, settings: { userId: '1234', comparisonId:id } })
         }
         
     }
