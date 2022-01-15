@@ -4,12 +4,13 @@ $padding:20px;
 $gray:rgb(230, 230, 230);
 $hazard:orange;
 
-.wrapper{
+.wrapper {
   background-color: wheat;
   max-width: 75ch;
   margin: auto;
 }
-p{
+
+p {
   color: rgba(0, 0, 0, 0.603);
 }
 
@@ -33,7 +34,7 @@ p{
     width: fit-content;
     height: fit-content;
     box-sizing: border-box;
-    
+
 
     a {
       padding: 20px;
@@ -47,10 +48,11 @@ p{
     }
   }
 
-  &--image{
+
+  &--image {
     border-radius: $border-radius;
     background-color: $accent;
-    width:4rem;
+    width: 4rem;
     background-color: $gray;
     padding: 40px;
     display: flex;
@@ -61,16 +63,23 @@ p{
     cursor: pointer;
     user-select: none;
 
-    img{
+    img {
       width: 40px;
     }
-    p{
+
+    p {
       margin: 2px;
     }
 
   }
-&--hazard{
-  background-color: $hazard;
+
+  &--hazard {
+    background-color: $hazard;
+  }
+
 }
 
+.btns{
+  display: flex;
+  justify-content: space-evenly;
 }
