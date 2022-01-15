@@ -19,6 +19,7 @@ function CreateCompare() {
     function handleImageUpload(ev) {
         
         const image = ev.target.files[0];
+        console.dir(image)
         if (image.size > 5000000){
             alert('File is to large. the limit is 5M');
             return;
@@ -39,10 +40,7 @@ function CreateCompare() {
         const imagesArray = [];
         for (let image in images) {
             console.log(images[image])
-            imagesArray.push({
-                name: image,
-                image: images[image]
-            })
+            imagesArray.push(images[image])
         }
 
         if (imagesArray.length < 2) {
