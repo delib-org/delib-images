@@ -11,6 +11,7 @@ import Home from './views/pages/home/Home';
 import CreateChallange from "./views/pages/CreateChallange/CreateChallange";
 import CreateCompare from "./views/pages/CreateCompare/CreateCompare";
 import Compare from './views/pages/Compare/Compare';
+import ComparePublic from './views/pages/ComparePublic/ComparePublic';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="create-challange" element={<CreateChallange />} />
           <Route path="create-compare" element={<CreateCompare />} />
           <Route path="compare/:userId/:compareId" element={<Compare />} /> 
+          <Route path='compare-public/:userId/:compareId' element={<ComparePublic />} />
         </Route>
       </Routes>
     </BrowserRouter>

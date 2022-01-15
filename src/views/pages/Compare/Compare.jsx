@@ -1,5 +1,5 @@
 import { useState, useEffect} from 'react';
-import { useParams, useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import {collection, getDocs } from 'firebase/firestore';
 import './Compare.scss';
 
@@ -10,7 +10,6 @@ import {db} from '../../../controls/firebase/config';
 
 function Compare() {
 
-    const location = useLocation();
 
     const { userId, compareId } = useParams();
     const [clipboardCopyed, setClipboardCopyed] = useState(false);
@@ -35,8 +34,6 @@ function Compare() {
         copyToClipboard(`${domain}/compare-public/${userId}/${compareId}`);
         setClipboardCopyed(true);
         setTimeout(() => {
-
-            const address = location.pathname;
 
             setClipboardCopyed(false);
         }, 2000)
