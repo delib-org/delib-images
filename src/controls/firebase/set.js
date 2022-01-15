@@ -7,7 +7,7 @@ export function voteCompare(creatorId, compareId, imageId) {
         if(typeof compareId !== 'string') throw new Error('compareId is not a string');
         if(typeof imageId !== 'string') throw new Error('imageId is not a string');
 
-        const userId = '123456'
+        const userId = '12345678'
         const compareRef = doc(db, 'comparison', creatorId, compareId, 'results');
         const obj = {};
         obj[userId] = imageId;
