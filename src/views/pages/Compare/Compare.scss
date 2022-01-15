@@ -1,0 +1,10 @@
+.compare{
+    &__images{
+        display: flex;
+        flex-wrap: wrap;
+
+        img{
+            max-width: 300px;
+        }
+    }
+}

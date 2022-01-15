@@ -54,11 +54,10 @@ function Compare() {
             }
             <div className="compare__images">
                 {images.map(image=>{
-                    return  <div key={image.imageId} className="imageBox"><img src={image.imageSrc} alt={image.imageId} /></div>
+                    return  <div key={image.imageId} className="compare__imageBox"><img src={image.imageSrc} alt={image.imageId} /></div>
                 })}
                
             </div>
-            <img src='https://firebasestorage.googleapis.com/v0/b/select-mass-pictures.appspot.com/o/comparison%2F1234%2Fid146e42d317032%2FaddImage2?alt=media&token=dbda6828-a9cb-431c-ad9c-ee6cc263e8a2'/>
         </div>
     )
 }
