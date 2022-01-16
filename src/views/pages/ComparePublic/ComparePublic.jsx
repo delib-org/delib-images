@@ -17,7 +17,8 @@ function ComparePublic({ user }) {
     const { userId, compareId } = useParams();
     const [images, setImages] = useState([]);
     const [selected, setSelected] = useState(false);
-    const [userLogged, setUserLogged] = useState(false)
+    const [userLogged, setUserLogged] = useState(false);
+    const [wasVoted, setWasVoted] = useState(false);
     useEffect(() => {
 
         console.log(user)
@@ -48,10 +49,10 @@ function ComparePublic({ user }) {
         if (!{}.hasOwnProperty.call(user, 'uid')) {
             signInAnonymously(auth)
                 .then(() => {
-                   console.log('user signed in anonymously')
+                    console.log('user signed in anonymously')
                 })
                 .catch((error) => {
-                   console.error(error)
+                    console.error(error)
                 });
         } else {
             setUserLogged(true);
@@ -65,6 +66,7 @@ function ComparePublic({ user }) {
 
     function handleVote(ev) {
         voteCompare(userId, compareId, selected, user.uid)
+        setWasVoted(true);
     }
 
     return (
@@ -82,7 +84,11 @@ function ComparePublic({ user }) {
                     })}
                 </div>
                 <div className="btns">
-                    {selected && userLogged ? <div className="btn" onClick={handleVote}>Vote!</div> : null}
+                    {!wasVoted ?
+                        selected && userLogged ? <div className="btn" onClick={handleVote}>Vote!</div> : null
+                        :
+                        <p className='comparePublic__thnaks'>You have voted. Thanks</p>
+                    }
                 </div>
             </div>
         </div>

@@ -5,6 +5,7 @@ import {
   Route
 } from "react-router-dom";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { getAnalytics } from "firebase/analytics";
 
 
 
@@ -18,6 +19,8 @@ import CreateCompare from "./views/pages/CreateCompare/CreateCompare";
 import Compare from './views/pages/Compare/Compare';
 import ComparePublic from './views/pages/ComparePublic/ComparePublic';
 import Login from './views/pages/Login/Login';
+
+const analytics = getAnalytics();
 
 function App() {
   

@@ -70,7 +70,7 @@ function Compare({ user, setLastPage }) {
 
     function handleCopy() {
         const domain = window.location.hostname;
-        copyToClipboard(`${domain}/compare-public/${userId}/${compareId}`);
+        copyToClipboard(`https://${domain}/compare-public/${userId}/${compareId}`);
         setClipboardCopyed(true);
         setTimeout(() => {
 
