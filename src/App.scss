@@ -8,6 +8,11 @@ $hazard:orange;
   background-color: wheat;
   max-width: 75ch;
   margin: auto;
+  padding: 20px;
+  border-radius: $border-radius;
+}
+h1, h2{
+  text-align: center;
 }
 
 p {

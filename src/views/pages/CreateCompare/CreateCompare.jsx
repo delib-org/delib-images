@@ -1,20 +1,32 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './CreateCompare.scss';
 import addImage from '../../../img/add-image.png';
-import { Link } from 'react-router-dom';
+import { Link,useNavigate } from 'react-router-dom';
+import { isUserAlawed } from '../../../controls/firebase/helpers';
 
 //controlers
 import { uploadImage } from '../../../controls/firebase/helpers';
 
+//components
+import Nav from '../../components/nav/Nav';
+
 
 
 const images = {}
-function CreateCompare() {
+function CreateCompare({user, setLastPage}) {
 
+    const navigate = useNavigate();
     const [image1, setImage1] = useState(false);
     const [image2, setImage2] = useState(false);
     const [isRedirect, setIsRedirect]  = useState(false);
-    const [redirectTo, setRedirectTo] = useState('')
+    const [redirectTo, setRedirectTo] = useState('');
+
+    useEffect(()=>{
+        if (!isUserAlawed(user,true)) {
+            setLastPage('/create-compare');
+            navigate('/login')
+        }
+    },[])
 
     function handleImageUpload(ev) {
         
@@ -47,14 +59,15 @@ function CreateCompare() {
             alert('You must set two images')
         } else {
             const comparisonId = "id" + Math.random().toString(16).slice(2)
-            uploadImage({ images: imagesArray, settings: { userId: '1234', comparisonId }, setIsRedirect })
-            setRedirectTo(`/compare/1234/${comparisonId}`)
+            uploadImage({ images: imagesArray, settings: { userId: user.uid, comparisonId }, setIsRedirect })
+            setRedirectTo(`/compare/${user.uid}/${comparisonId}`)
         }
 
     }
 
     return (
         <div className="createCompare">
+            <h1>Create new comparison</h1>
             <div className="wrapper">
                 {!image1 ?
                     <>
@@ -91,6 +104,7 @@ function CreateCompare() {
                     <Link to={redirectTo}>{redirectTo}</Link>
                 </div>:null}
             </div>
+            <Nav />
         </div>
     )
 }

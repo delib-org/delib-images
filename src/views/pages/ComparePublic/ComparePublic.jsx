@@ -1,18 +1,33 @@
 import { useState, useEffect } from 'react';
 import { useParams } from "react-router-dom";
 import { collection, getDocs } from 'firebase/firestore';
+import { getAuth, signInAnonymously } from "firebase/auth";
 import './ComparePublic.scss';
 
 //controlers
 import { db } from '../../../controls/firebase/config';
-import {voteCompare} from '../../../controls/firebase/set';
+import { voteCompare } from '../../../controls/firebase/set';
+import { useNavigate } from 'react-router-dom';
+import { isUserAlawed } from '../../../controls/firebase/helpers'
 
-function ComparePublic() {
+const auth = getAuth();
+
+function ComparePublic({ user }) {
+    const navigate = useNavigate();
     const { userId, compareId } = useParams();
     const [images, setImages] = useState([]);
-    const [selected, setSelected] = useState(false)
-
+    const [selected, setSelected] = useState(false);
+    const [userLogged, setUserLogged] = useState(false)
     useEffect(() => {
+
+        console.log(user)
+
+        if (!isUserAlawed(user, false)) {
+            navigate('/login')
+        }
+
+
+
         const compareRef = collection(db, 'comparison', userId, compareId);
 
         getDocs(compareRef).then(comparesDB => {
@@ -26,14 +41,30 @@ function ComparePublic() {
             })
             setImages(imagesTemp)
         })
-    })
+    }, [])
+
+    useEffect(() => {
+        console.log(user)
+        if (!{}.hasOwnProperty.call(user, 'uid')) {
+            signInAnonymously(auth)
+                .then(() => {
+                   console.log('user signed in anonymously')
+                })
+                .catch((error) => {
+                   console.error(error)
+                });
+        } else {
+            setUserLogged(true);
+
+        }
+    }, [user])
 
     function handleSelected(imageId) {
         setSelected(imageId)
     }
 
-    function handleVote(ev){
-        voteCompare(userId, compareId, selected)
+    function handleVote(ev) {
+        voteCompare(userId, compareId, selected, user.uid)
     }
 
     return (
@@ -51,7 +82,7 @@ function ComparePublic() {
                     })}
                 </div>
                 <div className="btns">
-                    {selected? <div className="btn" onClick={handleVote}>Vote!</div>:null}
+                    {selected && userLogged ? <div className="btn" onClick={handleVote}>Vote!</div> : null}
                 </div>
             </div>
         </div>

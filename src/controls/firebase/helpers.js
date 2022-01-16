@@ -17,9 +17,15 @@ export async function uploadImage({ images, settings, setIsRedirect }) {
         if (typeof userId !== 'string' || typeof comparisonId !== 'string') throw new Error('user or comparison are not strings');
 
         const readyArray = [];
+        const tempObj = {};
+        
+        //register comparisons to be able to show all
+        tempObj.images = [];
+        tempObj.date = new Date();
+        const compareRef = doc(db, 'comparison', userId, 'all', comparisonId)
 
-        images.forEach(image => {
-            console.log(image)
+        images.forEach((image, index) => {
+            console.log(image, index)
             const imageName = `${uniqueId(2)}${image.name}`;
             console.log(imageName)
             if (!imageName) throw new Error('no name for image')
@@ -28,17 +34,23 @@ export async function uploadImage({ images, settings, setIsRedirect }) {
 
 
             const imageRef = doc(db, 'comparison', userId, comparisonId, `${imageName}`);
+           
 
             uploadBytes(storageRef, image).then(snapshot => {
                 console.log(snapshot)
 
                 getDownloadURL(storageRef).then(httpRef => {
                     console.log(httpRef)
+                    tempObj.images[index] = httpRef;
+
                     setDoc(imageRef, { imageSrc: httpRef }).then(() => {
 
                         readyArray.push('ready');
                         if (readyArray.length === images.length && setIsRedirect) {
                             setIsRedirect(true);
+
+                            console.log(tempObj)
+                            setDoc(compareRef, tempObj, { merge: true });
                         }
                     })
 
@@ -90,4 +102,23 @@ export function copyToClipboard(text) {
 export function uniqueId(length = 16) {
 
     return parseInt(Math.ceil(Math.random() * Date.now()).toPrecision(length).toString().replace(".", ""))
+}
+
+export function isUserAlawed(user, isRestrictedToLoggedUsers) {
+    try {
+        if (typeof isRestrictedToLoggedUsers !== 'boolean') throw new Error('isRestrictedToLoggedUsers is not a boolean');
+
+        console.log(user)
+        if ({}.hasOwnProperty.call(user, 'isAnonymous') && user.isAnonymous === false && isRestrictedToLoggedUsers === true) {
+            return true
+        } else if (isRestrictedToLoggedUsers === false) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    } catch (error) {
+        console.error(error);
+        return false;
+    }
 }

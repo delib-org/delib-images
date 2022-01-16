@@ -4,12 +4,12 @@ import {Link} from 'react-router-dom';
 function Nav(){
     return(
         <nav>
-                <Link to='/main'>main</Link>
+                <Link to='/'>Home</Link>
                 <Link to='/create-challange'>
-                    Create a chalange
+                    Create new challange
                 </Link >
                 <Link to='/create-compare'>
-                    compare images comparison
+                    Create new comparison
                 </Link>
             </nav>
     )
