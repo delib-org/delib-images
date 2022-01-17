@@ -1,24 +1,42 @@
-.comparePublic{
- 
-    .wrapper{
+.comparePublic {
+
+    .wrapper {
         text-align: center;
         align-items: center;
+        margin-top: 15vh;
+        min-height: 100vh;
+
+        h2 {
+            margin: 4vh 0px 6vh 0px;
+        }
+        .explain{
+            margin-bottom: 6vh;
+        }
     }
-    &__images{
+
+    &__images {
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
+        margin-bottom: 50px;
 
-        
     }
-    &__imageBox{
+
+    &__imageBox {
         flex: 1;
-      
-        img{
+        border-radius: 10px;
+
+        img {
             width: 100%;
         }
-        &--selected{
-            box-shadow: 0px 0px 20px rgb(195, 131, 34);
+
+        &--selected {
+            box-shadow: 0px 0px 20px rgba(199, 199, 199, 0.685);
         }
+    }
+
+    footer {
+        position: absolute;
+        bottom: 0px;
     }
 }

@@ -72,7 +72,8 @@ function ComparePublic({ user }) {
     return (
         <div className="comparePublic">
             <div className="wrapper">
-                <h2>Which one is more beutiful?</h2>
+                <h2>Which one is more beautiful?</h2>
+                <p className="explain">please choose and vote</p>
                 <div className="comparePublic__images">
                     {images.map(image => {
                         return <div
@@ -85,7 +86,7 @@ function ComparePublic({ user }) {
                 </div>
                 <div className="btns">
                     {!wasVoted ?
-                        selected && userLogged ? <div className="btn" onClick={handleVote}>Vote!</div> : null
+                        selected && userLogged ? <div className="btn" onClick={handleVote}>Vote!</div> :<div className="btn btn--disabled">Vote!</div>
                         :
                         <p className='comparePublic__thnaks'>You have voted. Thanks</p>
                     }
