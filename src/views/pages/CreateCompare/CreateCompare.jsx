@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext} from 'react';
 import './CreateCompare.scss';
 import addImage from '../../../img/add-image.png';
 import { Link,useNavigate } from 'react-router-dom';
@@ -10,11 +10,15 @@ import { uploadImage } from '../../../controls/firebase/helpers';
 //components
 import Nav from '../../components/nav/Nav';
 
+//state
+import { StoreContext } from '../../../App';
+
 
 
 const images = {}
-function CreateCompare({user, setLastPage}) {
+function CreateCompare() {
 
+    const {user, setLastPage} = useContext(StoreContext)
     const navigate = useNavigate();
     const [image1, setImage1] = useState(false);
     const [image2, setImage2] = useState(false);
