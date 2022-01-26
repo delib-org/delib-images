@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useEffect } from "react";
+import { createContext, useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { getAnalytics } from "firebase/analytics";
@@ -48,11 +48,11 @@ function App() {
           <Route path="/" element={<Main user={user} />}>
             <Route
               path="login"
-              element={<Login lastPage={lastPage} user={user} />}
+              element={<Login/>}
             />
             <Route
               path="create-challange"
-              element={<CreateChallange user={user} />}
+              element={<CreateChallange />}
             />
             <Route
               path="create-compare"
@@ -60,7 +60,7 @@ function App() {
             />
             <Route
               path="compare/:userId/:compareId"
-              element={<Compare user={user} setLastPage={setLastPage} />}
+              element={<Compare />}
             />
             <Route
               path="compare-public/:userId/:compareId"
@@ -68,11 +68,11 @@ function App() {
             />
             <Route
               path=""
-              element={<Home user={user} setLastPage={setLastPage} />}
+              element={<Home />}
             />
             <Route
               path="*"
-              element={<Home user={user} setLastPage={setLastPage} />}
+              element={<Home  />}
             />
           </Route>
         </Routes>

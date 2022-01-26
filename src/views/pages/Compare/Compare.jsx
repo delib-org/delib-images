@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import { useParams, Link, useNavigate } from "react-router-dom";
+import { useState, useEffect, useContext} from 'react';
+import { useParams, useNavigate } from "react-router-dom";
 import { collection, getDocs, onSnapshot, doc } from 'firebase/firestore';
 import { isUserAlawed } from '../../../controls/firebase/helpers';
 
@@ -10,10 +10,15 @@ import { copyToClipboard } from '../../../controls/firebase/helpers';
 import { db } from '../../../controls/firebase/config';
 
 //components
-import Nav from '../../components/nav/Nav'
+import Nav from '../../components/nav/Nav';
+
+//state
+import { StoreContext } from '../../../App';
 
 
-function Compare({ user, setLastPage }) {
+function Compare() {
+
+    const {user, setLastPage} = useContext(StoreContext)
 
     const navigate = useNavigate();
     const { userId, compareId } = useParams();

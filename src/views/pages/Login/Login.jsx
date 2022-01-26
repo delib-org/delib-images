@@ -1,7 +1,10 @@
-import { useEffect } from 'react';
+import { useEffect, useContext} from 'react';
 import './Login.scss';
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { useNavigate } from 'react-router-dom';
+
+//state
+import { StoreContext } from '../../../App';
 
 const provider = new GoogleAuthProvider();
 
@@ -12,7 +15,11 @@ const auth = getAuth();
 
 auth.languageCode = 'en';
 
-function Login({user, lastPage}) {
+function Login() {
+
+
+    const {user, lastPage} = useContext(StoreContext)
+
     const navigate = useNavigate();
 
     useEffect(()=>{

@@ -1,13 +1,19 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState , useContext} from 'react'
 import { onSnapshot, collection } from 'firebase/firestore';
 import './Home.scss';
 import { Link, useNavigate } from 'react-router-dom';
 
 //controls
 import { isUserAlawed } from '../../../controls/firebase/helpers';
-import { db } from '../../../controls/firebase/config'
+import { db } from '../../../controls/firebase/config';
 
-function Home({ user, setLastPage }) {
+//state
+import { StoreContext } from '../../../App';
+
+function Home() {
+
+    const {user, setLastPage} = useContext(StoreContext)
+
     const navigate = useNavigate();
     const [comparisons, setComparisons] = useState([])
 
